@@ -142,6 +142,7 @@ def showPlay():
     global state
     screen.fill((255, 0, 0))
     screen.blit(boardbg, (0, 0))
+    board.dead()
     if board.enemyTurn == True:
         enemy.move()
         board.enemyTurn = False

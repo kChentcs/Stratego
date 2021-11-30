@@ -77,3 +77,33 @@ class Board:
     def die(self, piece):
         self.endgame = True
         self.player1 = piece.enemy
+
+    def dead(self):
+        if self.enemyTurn == False:
+            move = False
+            for i in self.grid:
+                for j in i:
+                    square = j
+                    if square.piece:
+                        if square.piece.enemy == False:
+                            validM = square.piece.getValidSquares(False)
+                            if len(validM) > 0:
+                                move = True
+                                break
+        else:
+            move = False
+            for i in self.grid:
+                for j in i:
+                    square = j
+                    if square.piece:
+                        if square.piece.enemy == True:
+                            validM = square.piece.getValidSquares(True)
+                            if len(validM) > 0:
+                                move = True
+                                break
+
+        if not move:
+            self.endgame = True
+            self.player1 = self.enemyTurn
+
+
